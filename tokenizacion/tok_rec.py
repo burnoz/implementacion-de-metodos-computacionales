@@ -40,15 +40,39 @@ def tokenize(dict_regex, text, token_list):
         return token_list
 
 dict_regex = {"int": r"^-?[0-9]+\b",
-              "identifier": r"^[a-zA-Z]\w*\b",
-              "op_asign": r"^=",
-              "op_compare": r"^==",
-              "op_substraction": r"^-"
-              }
-
+            "float": r"^-?[0-9]+\.[0-9]+\b",
+            "string": r"^\"\w*\"",
+            "real_num": r"^-?[0-9]+\.[0-9]E?-?[0-9]+\b",
+            "identifier": r"^[a-zA-Z]\w*\b",
+            "comment": r"^//.*",
+            "op_asign": r"^=",
+            "op_compare": r"^==",
+            "op_less": r"^<",
+            "op_greater": r"^>",
+            "op_less_eq": r"^<=",
+            "op_greater_eq": r"^>=",
+            "op_not_eq": r"^!=",
+            "op_substraction": r"^-",
+            "op_sum": r"^\+",
+            "op_multiplication": r"^\*",
+            "op_division": r"^/",
+            "op_exp": r"^\^",
+            "for": r"^for\b",
+            "if": r"^if\b",
+            "else": r"^else\b",
+            "while": r"^while\b",
+            "def": r"^def\b",
+            "return": r"^return\b",
+            "open_parenthesis": r"^\(",
+            "close_parenthesis": r"^\)",
+            "open_bracket": r"^\[",
+            "close_bracket": r"^\]",
+            "open_brace": r"^{",
+            "close_brace": r"^}",
+            }
 
 # text = "    \n\t abc123 == -78";
-text = "     \t\na = 32.4 \n*(-8.6 - b) /   6.1E-8";
+text = " *";
 token_stream = []
 
 print(tokenize(dict_regex, text, token_stream))
