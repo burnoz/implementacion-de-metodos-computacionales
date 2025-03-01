@@ -26,7 +26,7 @@ def tokenize(dict_regex, text, token_list):
         token = best_match(dict_regex, text)
 
         if token != "None":
-            text = re.sub(token[1], "", text, count=1)
+            text = text.replace(token[1], "", 1)
             token_list.append(token)
 
             return tokenize(dict_regex, text, token_list)
@@ -71,8 +71,9 @@ dict_regex = {"int": r"^-?[0-9]+\b",
             "close_brace": r"^}",
             }
 
-# text = "    \n\t abc123 == -78";
-text = " *";
+text = "b = 7 +* 20.5E-3";
 token_stream = []
 
 print(tokenize(dict_regex, text, token_stream))
+# ding = re.match(r"^\*", "*")
+# print(ding)

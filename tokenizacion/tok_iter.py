@@ -29,7 +29,7 @@ def tokenize(dict_regex, text):
 
             if token != "None":
                 # print(token)
-                text = re.sub(token[1], "", text, count=1)
+                text = text.replace(token[1], "", 1)
                 token_stream.append(token)
 
             else:
@@ -45,11 +45,12 @@ dict_regex = {"int": r"^-?[0-9]+\b",
               "identifier": r"^[a-zA-Z]\w*\b",
               "op_asign": r"^=",
               "op_compare": r"^==",
-              "op_substraction": r"^-"
+              "op_substraction": r"^-",
+              "op_multiplication": r"^\*\b"
               }
 
 
-text = "    \n\t abc123 == -78";
+text = "    \n\t abc123 == *78";
 
 print(tokenize(dict_regex, text))
 
