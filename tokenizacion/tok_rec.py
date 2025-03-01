@@ -13,6 +13,7 @@ def best_match(patterns, text):
 
     if matches:
         longest = max(matches, key=lambda m: len(m[1]))
+        # print(longest)
         return longest
 
     return "None"
@@ -32,19 +33,29 @@ def tokenize(dict_regex, text, token_list):
             return tokenize(dict_regex, text, token_list)
 
         else:
-            print("Error, no match found")
+            print("Error, no match found for ", text)
             return token_list
 
     else:
-        print("String ended")
+        # print("String ended")
         return token_list
 
-dict_regex = {"int": r"^-?[0-9]+\b",
+dict_regex = {"for": r"^for\b",
+            "if": r"^if\b",
+            "else": r"^else\b",
+            "while": r"^while\b",
+            "def": r"^def\b",
+            "return": r"^return\b",
+            "as": r"^as\b",
+            "import": r"^import\b",
+            "method": r"^\.[a-zA-Z]\w*\b",
+            "int": r"^-?[0-9]+\b",
             "float": r"^-?[0-9]+\.[0-9]+\b",
-            "string": r"^\"\w*\"",
+            "string": r"^\".*\"",
             "real_num": r"^-?[0-9]+\.[0-9]E?-?[0-9]+\b",
             "identifier": r"^[a-zA-Z]\w*\b",
             "comment": r"^//.*",
+            "python_comment": r"^#.*",
             "op_asign": r"^=",
             "op_compare": r"^==",
             "op_less": r"^<",
@@ -57,23 +68,22 @@ dict_regex = {"int": r"^-?[0-9]+\b",
             "op_multiplication": r"^\*",
             "op_division": r"^/",
             "op_exp": r"^\^",
-            "for": r"^for\b",
-            "if": r"^if\b",
-            "else": r"^else\b",
-            "while": r"^while\b",
-            "def": r"^def\b",
-            "return": r"^return\b",
             "open_parenthesis": r"^\(",
             "close_parenthesis": r"^\)",
             "open_bracket": r"^\[",
             "close_bracket": r"^\]",
             "open_brace": r"^{",
             "close_brace": r"^}",
+            "colon": r"^:",
+            "comma": r"^,",
             }
 
-text = "b = 7 +* 20.5E-3";
-token_stream = []
+test_file = open("test.txt", "r")
+lines = test_file.readlines()
 
-print(tokenize(dict_regex, text, token_stream))
-# ding = re.match(r"^\*", "*")
-# print(ding)
+for line in lines:
+    token_list = []
+
+    if line.strip():
+        print(line.strip())
+        print(tokenize(dict_regex, line, token_list), "\n")

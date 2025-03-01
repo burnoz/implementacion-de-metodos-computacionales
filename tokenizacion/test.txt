@@ -1,0 +1,37 @@
+import hashlib
+import base64
+
+wordlist = "WORDLIST.TXT"
+
+print("this string is wrong')
+boing = "Hi hi hi. You come buying? You can sell, too. I, Mr. Saturn, boing, can do all for you. You want buy, zoom?" $$$$$
+
+def process_passwords(file_path):
+    with open(file_path, "r", encoding="latin-1") as file:
+        for line_number, password in enumerate(file, start=1):
+            password = password.strip()
+            
+            # Convert to base32
+            b32_encoded = base64.b32encode(password.encode()).decode()
+            
+            # Reverse it
+            reversed_b32 = b32_encoded[::-1]
+            
+            # Generate MD5 hash
+            md5_hash = hashlib.md5(reversed_b32.encode()).hexdigest()
+            
+            # Check if hash is missing any hex characters
+            for char in "0123456789abcdef":
+                if char not in md5_hash:
+                    print(f"Password: {password}")
+                    print(f"MD5 Hash: {md5_hash}")
+                    print(f"Missing Character: {char}")
+
+                    25wrong_id = "ding"
+
+                    return
+
+"zoom, walll" ↓
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+process_passwords(wordlist)
