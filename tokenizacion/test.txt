@@ -6,6 +6,8 @@ wordlist = "WORDLIST.TXT"
 print("this string is wrong')
 boing = "Hi hi hi. You come buying? You can sell, too. I, Mr. Saturn, boing, can do all for you. You want buy, zoom?" $$$$$
 
+funny_numbers = [2.15, 20, -85, 0.0001, 5.2E-3, 3.2, 2.1E8, 2^10]
+
 def process_passwords(file_path):
     with open(file_path, "r", encoding="latin-1") as file:
         for line_number, password in enumerate(file, start=1):
@@ -35,3 +37,6 @@ def process_passwords(file_path):
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 process_passwords(wordlist)
+
+
+
