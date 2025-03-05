@@ -44,19 +44,16 @@ class Automata:
     def validate(self, input):
         n = len(input)
 
-        start = self.start_state
-        end = self.end_states
+        start = "q" + str(self.start_state)
+        end = "q" + str(self.end_states[0])
 
         current = start
-        print(current)
         i = 0
 
         while i < n:
-            print(input[i])
             next = self.get_transition(current, input[i])
-            print(next)
 
-            if next == -1:
+            if next == error:
                 break
             
             else:
@@ -99,7 +96,7 @@ auto_float.add_tran("q3", "0123456789", "q3")
 # for state in auto_float.table_tran:
 #     print(state, auto_float.table_tran[state])
 
-ding = auto_float.get_transition("q0", ".")
-print(ding)
+# ding = auto_float.get_transition("q0", "1")
+# print(ding)
 
 print(auto_float.validate("123.456"))
