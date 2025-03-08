@@ -64,25 +64,18 @@ class Automata:
             return True
         
         return False
-        
-            
-        # Por cada caracter de la cadena ...
-            # obtener el siguiente estado, dado el estado actual y el simbolo
-            # si no hay transicion, rechaza la cadena y rompe el ciclo
-
-        # Revisa si la cadena fue completamente procesada, y si el automata esta en estado de aceptacion
-        # si es asi, acepta la cadena
 
 error = -1
 
-#	[0-9]+.[0-9]+
-alphabet = ['0','1','2','3','4','5','6','7','8','9','.']
-start_state = 0
-end_states = [3]
 
-n_estados = 5
+# Float numbers
+alphabet_float = ['0','1','2','3','4','5','6','7','8','9','.']
+start_float = 0
+end_float = [3]
 
-auto_float = Automata(alphabet, n_estados, start_state, end_states)
+num_states_float = 5
+
+auto_float = Automata(alphabet_float, num_states_float, start_float, end_float)
 
 auto_float.add_tran("q0", "0123456789", "q1")
 auto_float.add_tran("q0", "+-", "q4")
@@ -92,11 +85,19 @@ auto_float.add_tran("q1", ".", "q2")
 auto_float.add_tran("q2", "0123456789", "q3")
 auto_float.add_tran("q3", "0123456789", "q3")
 
+print(auto_float.validate("125.20"))
 
-# for state in auto_float.table_tran:
-#     print(state, auto_float.table_tran[state])
+# Int numbers
+alphabet_int = ['0','1','2','3','4','5','6','7','8','9']
+start_int = 0
+end_int = [1]
 
-# ding = auto_float.get_transition("q0", "1")
-# print(ding)
+num_states_int = 2
 
-print(auto_float.validate("123.456"))
+auto_int = Automata(alphabet_int, num_states_int, start_int, end_int)
+
+auto_int.add_tran("q0", "0123456789", "q1")
+auto_int.add_tran("q0", "+-", "q1")
+auto_int.add_tran("q1", "0123456789", "q1")
+
+print(auto_int.validate("125"))
