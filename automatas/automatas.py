@@ -183,6 +183,10 @@ automatons = [auto_float, auto_int, auto_id, auto_comment, auto_sci]
 
 # Casos de prueba
 test_cases = ["125.20", "125", "yayayx_25", "/* Comentario */", "// Otro comentario", "125.20E-10", "125.20e10"]
+invalid_cases = ["125.", "125.20E-10.2", "125.20e-10.2", "identificador123", "/* Comentario *", "/ Otro comentario"]
 
 for test in test_cases:
+    identify(automatons, test)
+
+for test in invalid_cases:
     identify(automatons, test)
