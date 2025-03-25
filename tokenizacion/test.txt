@@ -8,6 +8,8 @@ boing = "Hi hi hi. You come buying? You can sell, too. I, Mr. Saturn, boing, can
 
 funny_numbers = [2.15, 20, -85, 0.0001, 5.2E-3, 3.2, 2.1E8, 2^10]
 
+2.14E-8
+
 def process_passwords(file_path):
     with open(file_path, "r", encoding="latin-1") as file:
         for line_number, password in enumerate(file, start=1):
