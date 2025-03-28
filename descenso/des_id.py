@@ -39,16 +39,25 @@ def factor(tokens, errors):
         expr(tokens, errors)
 
         # Cuando expr termine, actualiza el token actual
+        token = tokens.current()
+
         # Si el token actual es ahora un ')'....
+        if token == ")":
             # Avanza al siguiente
+            tokens.avanza()
 
         # Si no, guarda el error
+        addError(errors, ")", token, tokens.pos)
 
     # O si es un 'id'...
+    elif token == "id":
         # Avanza al siguiente token
+        tokens.avanza()
 
     # Si no es ninguna de las anteriores...
+    else:
         # guarda el error
+        addError(errors, "id / expresion", token, tokens.pos)
 
 
 
@@ -58,11 +67,17 @@ def termino_prime(tokens, errors):
     token = tokens.current()
 
     # Si el token actual es un '*'
-    if ...
+    if token == "*":
         # Avanza al siguiente token
+        tokens.avanza()
 
         # Llama a factor
+        factor(tokens, errors)
+
         # Llama a termino_prime
+        termino_prime(tokens, errors)
+
+    # Caso alternativo, el token actual es epsilon
 
 
 
@@ -80,15 +95,18 @@ def termino(tokens, errors):
 # <expresion_prime> ::= + <termino> <expresion_prime> | <vacio>
 def expr_prime(tokens, errors):
     # Obten el token actual
-    token = ?
+    token = tokens.current()
 
     # Si el token actual es un '+'
-    if ...
+    if token == "+":
         # Avanza al siguiente token
+        tokens.avanza()
 
         # Llama a termino
-        # Luego llama a expr_prime
+        termino(tokens, errors)
 
+        # Luego llama a expr_prime
+        expr_prime(tokens, errors)
 
     # Si no, nada... se asume que es <vacio>
 
@@ -126,11 +144,11 @@ for linea in lineas:
     tokens = Tokens(linea)
     errors = []
 
-    expr(tokens, errors )   #    Revisa si la linea es una expresion valida
+    expr(tokens, errors)   #    Revisa si la linea es una expresion valida
 
 
-    if tokens.pos < len(tokens.tokens)-1:       #   Si no se consumio toda la linea, hubo algun token inesperado
-        addError( errors, "operador", tokens.current() , tokens.pos )
+    if tokens.pos < len(tokens.tokens) - 1:       #   Si no se consumio toda la linea, hubo algun token inesperado
+        addError(errors, "operador", tokens.current() , tokens.pos)
 
     if len(errors) == 0 :
         print("OKS\n")
