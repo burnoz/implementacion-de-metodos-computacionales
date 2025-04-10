@@ -23,8 +23,6 @@ def addError(errors, expected, token, index):
     #print(  f"ERROR index {index}: esperaba {expected}, recibio {token}"  )
     errors.append( f"ERROR en index {index}: esperaba {expected}, recibio {token}"  )
 
-
-
 # F ->  ( E ) | id
 def factor(tokens, errors):
     # Obten el token actual
