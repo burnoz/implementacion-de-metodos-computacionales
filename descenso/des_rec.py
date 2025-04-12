@@ -143,26 +143,36 @@ def expr(tokens, errors):
 
 
 def evalua(tokens):
+    # Intenta evaluar la expresion
     try:
         result = eval_expr(tokens, 0)[0]
         # result, _ = eval_expr(tokens, 0)
         # return result
     
+    # Si hay una division entre 0 no devuelve resultado
     except ZeroDivisionError:
-        print("woops")
-        return "Division sobre cero :p"
+        # print("woops")
+        return "division sobre cero :p"
 
+    # Devuelve el resultado si no hay division sobre cero
     return result
 
-
+# Evalua multiplicaciones y divisiones
 def eval_term(tokens, index):
+    # Llama a la funcion para evaluar expresiones entre parentesis
     value, index = eval_factor(tokens, index)
 
+    # Revisa que aun haya tokens y que sea un operador de multiplicacion o division
     while index < len(tokens) and tokens[index] in ("*", "/"):
+        # Guarda el operador
         op = tokens[index]
+        # Avanza en la lista de tokens
         index += 1
+
+        # Verifica si hay alguna expresion entre parentesis al frente
         next_value, index = eval_factor(tokens, index)
-        
+
+        # Realiza la operacion correspondiente
         if op == "*":
             value *= next_value
 
@@ -171,7 +181,7 @@ def eval_term(tokens, index):
     
     return value, index
 
-
+# Evalua expresiones entre parentesis
 def eval_factor(tokens, index):
     if tokens[index] == "(":
         index += 1
@@ -185,15 +195,22 @@ def eval_factor(tokens, index):
         value = int(tokens[index])
         return value, index + 1
 
-
+# Evalua sumas y restas
 def eval_expr(tokens, index):
+    # Llama a la funcion para evaluar multiplicaciones/divisiones
     value, index = eval_term(tokens, index)
     
+    # Revisa que aun haya tokens y que sea un operador de suma o resta
     while index < len(tokens) and tokens[index] in ("+", "-"):
+        # Guarda el operador
         op = tokens[index]
+        # Avanza en la lista de tokens
         index += 1
+
+        # Revisa si hay alguna operacion de mayor jerarquia al frente
         next_value, index = eval_term(tokens, index)
         
+        # Realiza la operacion correspondiente
         if op == "+":
             value += next_value
         
@@ -202,25 +219,27 @@ def eval_expr(tokens, index):
     
     return value, index
 
-
+# Expresion regular para identificar numeros enteros
 reg_int = r"^-?[0-9]+\b"
-nums = []
-operadores = []
 
 #    Cada linea tiene un EOL al final, para evitar desbordar
 #    El tokenizer deberia producir esta lista, y los id deberian tener valores numericos asociados...
-lineas = [  ["1","2", "+",  "(", "3", "*", "*", "4", ")", "Ei8OL"] ,
+lineas = [  ["1","2", "+",  "(", "3", "*", "*", "4", ")", "EOL"] ,
             ["5", "+", "+", "6", "EOL"] ,
             ["7", "*", "*", "8", "EOL"],
             ["9", "/", "10" , "EOL"],
             ["(","11",")", "+", "(", "12", "*", "13",")", "EOL" ],
             ["14", "+", "15", "*", "16", "EOL"],
             ["(", "+", "17", "*", "18", "EOL"],
-            ["19", "*", "20", "+", "21", "EOL"],        #    nope
-            ["22", "*", "23", "24", "EOL"],             #    nope
-            ["25", "26", "EOL"],                        #    nope
-            ["(", "27", ")", "+", "(", "28", ")", "EOL"],    # oks
-            ["20", "/", "(", "1", "-", "1", ")", "EOL"]
+            ["19", "*", "20", "+", "21", "EOL"],
+            ["22", "*", "23", "24", "EOL"],
+            ["25", "26", "EOL"],
+            ["(", "27", ")", "+", "(", "28", ")", "EOL"],
+            ["20", "/", "(", "1", "-", "1", ")", "EOL"],
+            ["20", "*", "+", "2", "EOL"],
+            ["30", "+", "40", "*", "50", "EOL"],
+            ["(", "60", "-", "70", ")", "*", "80", "EOL"],
+            ["210", "/", "(", "100", "+", "110", ")", "EOL"]
         ]
 
 for linea in lineas:
@@ -231,15 +250,14 @@ for linea in lineas:
 
     expr(tokens, errors)   #    Revisa si la linea es una expresion valida
 
-
     if tokens.pos < len(tokens.tokens) - 1:       #   Si no se consumio toda la linea, hubo algun token inesperado
         addError(errors, "operador", tokens.current() , tokens.pos)
 
     if len(errors) == 0 :
-        print("OKS\n")
+        print("OKS")
 
         # Si no hubo errores, evalua la expresion
-        print(evalua(linea))
+        print(f"Resultado de la expresion: {evalua(linea)} \n")
 
     else:
         for e in errors:
