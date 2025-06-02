@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html style='background-color: #1e1e2e; color: #cdd6f4'>
+Automata
+<head>
+<title>Automata</title>
+</head>
+<body>
+<pre><span style='color: #f5c2e7'>automaton</span> <span style='color: #eebebe'>auto_2</span><span style='color: #f9e2af'>{</span>
+	<span style='color: #89b4fa'>states</span> <span style='color: #f38ba8'>-></span> <span style='color: #fab387'>[</span><span style='color: #94e2d5'>Q0</span><span style='color: #9399b2'>,</span> <span style='color: #94e2d5'>Q1</span><span style='color: #9399b2'>,</span> <span style='color: #94e2d5'>Q2</span><span style='color: #fab387'>]</span>
+	<span style='color: #89b4fa'>start_state</span> <span style='color: #f38ba8'>-></span> <span style='color: #94e2d5'>Q0</span>
+	<span style='color: #89b4fa'>end_states</span> <span style='color: #f38ba8'>-></span> <span style='color: #fab387'>[</span><span style='color: #94e2d5'>Q2</span><span style='color: #fab387'>]</span>
+	<span style='color: #cba6f7'>alphabet</span> <span style='color: #f38ba8'>-></span> <span style='color: #fab387'>[</span><span style='color: #eba0ac'>'+'</span><span style='color: #9399b2'>,</span> <span style='color: #eba0ac'>'-'</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>0</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>1</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>2</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>3</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>4</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>5</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>6</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>7</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>8</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>9</span><span style='color: #fab387'>]</span>
+
+<span style='color: #f38ba8'>(-)</span><span style='color: #f38ba8'>(-)</span><span style='color: #f38ba8'>(-)</span><span style='color: #f38ba8'>(-)</span><span style='color: #f38ba8'>(-)</span>
+
+<span style='color: #6c7086'>// Esto es un comentario, boing</span>
+
+<span style='color: #eebebe'>nums</span> <span style='color: #f38ba8'>-></span> <span style='color: #fab387'>[</span><span style='color: #a6adc8'>0</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>1</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>2</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>3</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>4</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>5</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>6</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>7</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>8</span><span style='color: #9399b2'>,</span> <span style='color: #a6adc8'>9</span><span style='color: #fab387'>]</span>
+<span style='color: #eebebe'>auto_2</span><span style='color: #b4befe'>.addTran</span><span style='color: #f9e2af'>(</span><span style='color: #94e2d5'>Q0</span><span style='color: #9399b2'>,</span> <span style='color: #94e2d5'>Q1</span><span style='color: #9399b2'>,</span> <span style='color: #fab387'>[</span><span style='color: #eba0ac'>'+'</span><span style='color: #9399b2'>,</span> <span style='color: #eba0ac'>'-'</span><span style='color: #fab387'>]</span><span style='color: #f9e2af'>)</span>
+<span style='color: #eebebe'>auto_2</span><span style='color: #b4befe'>.addTran</span><span style='color: #f9e2af'>(</span><span style='color: #94e2d5'>Q1</span><span style='color: #9399b2'>,</span> <span style='color: #94e2d5'>Q2</span><span style='color: #9399b2'>,</span> <span style='color: #eebebe'>nums</span><span style='color: #f9e2af'>)</span>
+<span style='color: #eebebe'>auto_2</span><span style='color: #b4befe'>.addTran</span><span style='color: #f9e2af'>(</span><span style='color: #94e2d5'>Q2</span><span style='color: #9399b2'>,</span> <span style='color: #94e2d5'>Q2</span><span style='color: #9399b2'>,</span> <span style='color: #eebebe'>nums</span><span style='color: #f9e2af'>)</span>
+<span style='color: #eebebe'>auto_2</span><span style='color: #b4befe'>.addTran</span><span style='color: #f9e2af'>(</span><span style='color: #94e2d5'>Q0</span><span style='color: #9399b2'>,</span> <span style='color: #94e2d5'>Q2</span><span style='color: #9399b2'>,</span> <span style='color: #eebebe'>nums</span><span style='color: #f9e2af'>)</span>
+<span style='color: #eebebe'>auto_2</span><span style='color: #b4befe'>.test</span><span style='color: #f9e2af'>(</span><span style='color: #f5c2e7'>"hola"</span><span style='color: #f9e2af'>)</span></pre>
+</body>
+</html>
